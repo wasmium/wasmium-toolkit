@@ -101,6 +101,13 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
+
+        val jvmMain by getting {
+            dependencies {
+                implementation("com.github.ajalt.clikt:clikt:4.2.2")
+                implementation("org.wasmium.wasm.binary:wasm-binary")
+            }
+        }
     }
 
     withSourcesJar()

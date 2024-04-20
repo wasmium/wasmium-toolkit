@@ -2,9 +2,6 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.dokka.DokkaConfiguration.Visibility
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin.Companion.kotlinNodeJsExtension
-import org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnLockMismatchReport
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
 import org.jetbrains.kotlin.gradle.targets.js.yarn.yarn

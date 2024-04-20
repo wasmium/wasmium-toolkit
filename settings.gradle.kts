@@ -1,6 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
 import build.gradle.api.includeModule
+import java.net.URI
 
 pluginManagement {
     includeBuild("build-settings-logic")
@@ -20,5 +21,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "wasmium-toolkit"
+
+includeBuild("../wasmium-wasm-binary")
 
 includeModule("wasmium-toolkit")

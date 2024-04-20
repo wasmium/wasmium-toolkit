@@ -11,7 +11,7 @@
 
 ## Overview
 
-Wasm toolkit.
+Wasmium interface for WebAssembly development.
 
 > [!WARNING]
 > wasmium-toolkit is under development.
