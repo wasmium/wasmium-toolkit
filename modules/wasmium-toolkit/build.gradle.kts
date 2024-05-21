@@ -17,11 +17,13 @@ kotlin {
 
     targets.all {
         compilations.all {
-            compilerOptions.configure {
-                withCompilerArguments {
-                    requiresOptIn()
-                    suppressExpectActualClasses()
-                    suppressVersionWarnings()
+            compileTaskProvider.configure {
+                compilerOptions {
+                    withCompilerArguments {
+                        requiresOptIn()
+                        suppressExpectActualClasses()
+                        suppressVersionWarnings()
+                    }
                 }
             }
         }
@@ -29,9 +31,11 @@ kotlin {
 
     jvm {
         compilations.all {
-            compilerOptions.configure {
-                withCompilerArguments {
-                    requiresJsr305()
+            compileTaskProvider.configure {
+                compilerOptions {
+                    withCompilerArguments {
+                        requiresJsr305()
+                    }
                 }
             }
         }
@@ -48,8 +52,6 @@ kotlin {
                 }
             }
         }
-
-        binaries.library()
     }
 
     wasmWasi {
@@ -58,10 +60,10 @@ kotlin {
 
     js {
         compilations.all {
-            kotlinOptions {
-                sourceMap = true
-                moduleKind = "umd"
-                metaInfo = true
+            compileTaskProvider.configure {
+                compilerOptions {
+                    sourceMap = true
+                }
             }
         }
 
