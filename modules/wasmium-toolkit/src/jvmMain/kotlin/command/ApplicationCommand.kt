@@ -1,4 +1,4 @@
-package org.wasmium.wasm.toolkit.commands
+package org.wasmium.wasm.toolkit.command
 
 import com.github.ajalt.clikt.core.CliktCommand
 

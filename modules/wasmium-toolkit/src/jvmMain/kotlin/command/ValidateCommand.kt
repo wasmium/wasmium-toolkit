@@ -1,4 +1,4 @@
-package commands
+package org.wasmium.wasm.toolkit.command
 
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.parameters.arguments.argument
@@ -9,12 +9,12 @@ import org.wasmium.wasm.binary.SourceBinaryReader
 import org.wasmium.wasm.binary.WasmBinaryReader
 import org.wasmium.wasm.binary.reader.ModuleReader
 import org.wasmium.wasm.binary.reader.ReaderOptions
-import org.wasmium.wasm.binary.verifier.ModuleVerifier
-import org.wasmium.wasm.binary.verifier.VerifierOptions
+import org.wasmium.wasm.binary.validator.ModuleValidator
+import org.wasmium.wasm.binary.validator.ValidatorOptions
 import java.io.File
 import java.io.FileInputStream
 
-public class VerifyCommand : CliktCommand(name = "verify", help = "Verify a wasm module") {
+public class ValidateCommand : CliktCommand(name = "validate", help = "Validate a wasm module") {
     public val file: File by argument().file(mustBeReadable = true)
 
     override fun run() {
@@ -30,15 +30,15 @@ public class VerifyCommand : CliktCommand(name = "verify", help = "Verify a wasm
                 }
             }
 
-            val verifierOptions = VerifierOptions {
+            val validatorOptions = ValidatorOptions {
                 features {
                     enableAll()
                 }
             }
 
-            ModuleReader(readerOptions).readModule(source, ModuleVerifier(options = verifierOptions))
+            ModuleReader(readerOptions).readModule(source, ModuleValidator(options = validatorOptions))
 
-            println("Wasm module is verified")
+            println("Wasm module is validated")
         }
     }
 }
