@@ -80,7 +80,7 @@ kotlin {
     sourceSets {
         all {
             languageSettings.apply {
-                apiVersion = ApiVersion.KOTLIN_1_6.toString()
+                apiVersion = ApiVersion.KOTLIN_2_0.toString()
                 languageVersion = LanguageVersion.KOTLIN_2_0.toString()
                 progressiveMode = true
 
@@ -106,8 +106,8 @@ kotlin {
 
         val jvmMain by getting {
             dependencies {
+                implementation("org.wasmium.wasm:wasm-binary")
                 implementation("com.github.ajalt.clikt:clikt:4.2.2")
-                implementation("org.wasmium.wasm.binary:wasm-binary")
             }
         }
     }

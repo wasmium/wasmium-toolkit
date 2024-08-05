@@ -1,17 +1,16 @@
 
 import io.gitlab.arturbosch.detekt.Detekt
-import org.jetbrains.dokka.DokkaConfiguration.Visibility
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
+import org.gradle.api.tasks.wrapper.Wrapper.DistributionType
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnLockMismatchReport
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
 import org.jetbrains.kotlin.gradle.targets.js.yarn.yarn
 
 plugins {
-    id(buildCatalog.plugins.kotlin.multiplatform.get().pluginId) apply false
-    alias(buildCatalog.plugins.kotlin.serialization) apply false
-    alias(buildCatalog.plugins.kotlinx.kover) apply false
-    alias(buildCatalog.plugins.kotlin.dokka)
-    alias(buildCatalog.plugins.detekt)
+    id(libraries.plugins.kotlin.multiplatform.get().pluginId) apply false
+    alias(libraries.plugins.kotlin.serialization) apply false
+    alias(libraries.plugins.kotlinx.kover) apply false
+    alias(libraries.plugins.kotlin.dokka)
+    alias(libraries.plugins.detekt)
 }
 
 allprojects {
@@ -24,21 +23,12 @@ allprojects {
     }
 }
 
-subprojects {
-    tasks.withType<DokkaTaskPartial>().configureEach {
-        dokkaSourceSets.configureEach {
-            documentedVisibilities.set(Visibility.values().toSet())
-        }
-        failOnWarning.set(true)
-        offlineMode.set(true)
-    }
-}
-
 plugins.withType<YarnPlugin> {
     yarn.apply {
         lockFileDirectory = rootDir.resolve("gradle/js")
         yarnLockMismatchReport = YarnLockMismatchReport.FAIL
         yarnLockAutoReplace = true
+        reportNewYarnLock = true
     }
 }
 
@@ -57,5 +47,14 @@ tasks {
         include("**/*.kt")
         include("**/*.kts")
         exclude("**/resources/**", "**/build/**", "**/build.gradle.kts/**", "**/settings.gradle.kts/**")
+    }
+
+    named<Wrapper>("wrapper") {
+        gradleVersion = libraries.versions.gradle.asProvider().get()
+        distributionType = DistributionType.ALL
+
+        doLast {
+            println("Gradle wrapper version: $gradleVersion")
+        }
     }
 }
