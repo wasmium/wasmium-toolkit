@@ -9,7 +9,9 @@ plugins {
     id("org.jetbrains.kotlin.multiplatform")
     id("org.jetbrains.dokka")
     id("org.jetbrains.kotlinx.kover")
+
     id("build-project-default")
+    id("build-publishing")
 }
 
 kotlin {
@@ -42,7 +44,7 @@ kotlin {
     }
 
     wasmJs {
-        moduleName = "wasmium-wasm-binary"
+        moduleName = "wasmium-toolkit"
 
         browser {
             testTask {
@@ -80,7 +82,7 @@ kotlin {
     sourceSets {
         all {
             languageSettings.apply {
-                apiVersion = ApiVersion.KOTLIN_2_0.toString()
+                apiVersion = ApiVersion.KOTLIN_1_7.toString()
                 languageVersion = LanguageVersion.KOTLIN_2_0.toString()
                 progressiveMode = true
 
@@ -94,7 +96,7 @@ kotlin {
                 srcDirs("src/commonMain/kotlinX")
             }
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-io-core:0.3.1")
+                implementation(libraries.kotlinx.io.core)
             }
         }
 
@@ -106,8 +108,8 @@ kotlin {
 
         val jvmMain by getting {
             dependencies {
-                implementation("org.wasmium.wasm:wasm-binary")
-                implementation("com.github.ajalt.clikt:clikt:4.2.2")
+                implementation("org.wasmium.wasm:wasmium-wasm-binary")
+                implementation(libraries.clikt)
             }
         }
     }

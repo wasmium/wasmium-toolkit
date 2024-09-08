@@ -1,17 +1,21 @@
 [versions]
 detekt = "1.23.6"
-gradle = "8.9"
+gradle = "8.10"
 gradle-foojay = "0.8.0"
 kotlin = "2.0.10"
 kotlin-dokka = "1.9.20"
 kotlinx-bcv = "0.16.3"
-kotlinx-coroutines = "1.7.3"
-kotlinx-datetime = "0.6.0"
-kotlinx-io = "0.5.1"
+kotlinx-coroutines = "1.8.1"
+kotlinx-datetime = "0.6.1"
+kotlinx-io = "0.5.3"
 kotlinx-kover = "0.8.3"
 kotlinx-serialization = "1.6.3"
+dokka-gradle-plugin = "1.9.20"
+clikt = "4.4.0"
 
 [libraries]
+clikt = { module = "com.github.ajalt.clikt:clikt", version.ref = "clikt" }
+dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka-gradle-plugin" }
 build-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 foojay-resolver = { module = "org.gradle.toolchains:foojay-resolver", version.ref = "gradle-foojay" }
 kotlinx-coroutines-bom = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-bom", version.ref = "kotlinx-coroutines" }
@@ -24,13 +28,10 @@ kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
 
 [bundles]
-kotlinx-coroutines = ["kotlinx-coroutines-core", "kotlinx-coroutines-test"]
-kotlinx-coroutines-test = ["kotlinx-coroutines-test"]
-kotlinx-io = ["kotlinx-io-core"]
-kotlinx-serialization = ["kotlinx-serialization-core", "kotlinx-serialization-json"]
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+dokka-gradle-plugin = { id = "org.jetbrains.dokka", version.ref = "dokka-gradle-plugin" }
 kotlin-dokka = { id = "org.jetbrains.dokka", version.ref = "kotlin-dokka" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
