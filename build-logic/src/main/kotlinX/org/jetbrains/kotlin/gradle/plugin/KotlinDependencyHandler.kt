@@ -1,9 +1,6 @@
-@file:Suppress("PackageDirectoryMismatch")
-
-package build.gradle.plugin
+package org.jetbrains.kotlin.gradle.plugin
 
 import org.gradle.api.artifacts.Dependency
-import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 private fun notation(group: String, name: String, version: String? = null) =
     "$group:$name${version?.let { ":$version" } ?: ""}"

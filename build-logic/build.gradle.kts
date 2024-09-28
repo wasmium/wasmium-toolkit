@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.plugin.getKotlinPluginVersion
-
 plugins {
     `kotlin-dsl`
     `java-gradle-plugin`
@@ -12,8 +10,8 @@ configurations.all {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${getKotlinPluginVersion()}")
-    implementation(libraries.dokka.gradle.plugin)
+    api(libraries.kotlin.gradle.plugin)
+    api(libraries.dokka.gradle.plugin)
 }
 
 sourceSets {
@@ -49,6 +47,14 @@ gradlePlugin {
         register("PublishingPlugin") {
             id = "build-publishing"
             implementationClass = "build.gradle.plugins.build.PublishingPlugin"
+        }
+        register("MultiplatformPlugin") {
+            id = "build-multiplatform"
+            implementationClass = "build.gradle.plugins.build.MultiplatformPlugin"
+        }
+        register("AssemblerPlugin") {
+            id = "build-assembler"
+            implementationClass = "build.gradle.plugins.build.AssemblerPlugin"
         }
     }
 }

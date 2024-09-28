@@ -40,6 +40,7 @@ public class SettingsDefaultPlugin : Plugin<Settings> {
                     }
                 }
                 mavenCentral()
+                mavenLocal()
             }
 
             versionCatalogs {
