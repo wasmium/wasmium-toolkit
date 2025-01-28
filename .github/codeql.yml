@@ -1,0 +1,25 @@
+name: "CodeQL Analysis"
+
+on:
+    workflow_dispatch:
+    push:
+        branches:
+            - "main"
+        paths-ignore:
+            - "**.md"
+            - ".idea/**"
+            - ".editorconfig"
+            - ".gitignore"
+    pull_request:
+        branches:
+            - "main"
+        paths-ignore:
+            - "**.md"
+            - ".idea/**"
+            - ".editorconfig"
+            - ".gitignore"
+
+jobs:
+    analyze:
+        uses: ./.github/workflows/codeql_kotlin.yml
+        secrets: inherit

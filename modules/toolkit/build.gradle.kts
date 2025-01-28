@@ -1,20 +1,18 @@
-import org.jetbrains.dokka.DokkaConfiguration.Visibility
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
-
 plugins {
-    alias(libraries.plugins.dokka.gradle.plugin)
     alias(libraries.plugins.kotlinx.kover)
 
+    `maven-publish`
+
+    id("build-kotlin-multiplatform")
     id("build-project-default")
-    id("build-multiplatform")
-    id("build-publishing")
+    id("build-maven-publishing-configurer")
 }
 
 kotlin {
     explicitApi()
 
     sourceSets {
-        all {
+        configureEach {
             languageSettings.apply {
                 optIn("kotlin.ExperimentalStdlibApi")
                 optIn("kotlin.RequiresOptIn")
@@ -23,12 +21,22 @@ kotlin {
             }
         }
 
+        matching { it.name.endsWith("Test") }.configureEach {
+            compilerOptions {
+                optIn.add("kotlinx.coroutines.FlowPreview")
+            }
+        }
+
         val commonMain by getting {
             kotlin {
                 srcDirs("src/commonMain/kotlinX")
             }
             dependencies {
+                implementation("org.wasmium.wasm:wasmium-wasm-binary:unspecified")
+
+                implementation(libraries.clikt)
                 implementation(libraries.kotlinx.io.core)
+                implementation(libraries.kotlinx.coroutines.core)
             }
         }
 
@@ -38,11 +46,6 @@ kotlin {
             }
         }
 
-        val jvmMain by getting {
-            dependencies {
-                implementation("org.wasmium.wasm:wasmium-wasm-binary:unspecified")
-                implementation(libraries.clikt)
-            }
-        }
+        val jvmTest by getting
     }
 }

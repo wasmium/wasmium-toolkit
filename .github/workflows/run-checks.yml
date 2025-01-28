@@ -1,0 +1,9 @@
+name: Run checks
+
+on:
+    workflow_dispatch:
+    workflow_call:
+
+jobs:
+    build:
+        uses: ./.github/workflows/run-build.yml

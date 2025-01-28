@@ -1,0 +1,9 @@
+name: Run build
+
+on:
+    workflow_dispatch:
+    workflow_call:
+
+jobs:
+    build-project:
+        uses: ./.github/workflows/build-jvm.yml

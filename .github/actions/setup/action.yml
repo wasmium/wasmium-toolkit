@@ -1,0 +1,58 @@
+name: 'Setup environment for the build'
+
+inputs:
+    cache-disabled:
+        description: 'gradle.cache-disabled'
+        default: 'false'
+    cache-read-only:
+        description: 'gradle.cache-read-only'
+        default: 'false'
+
+env:
+    GRADLE_OPTS: "--no-daemon -Dorg.gradle.daemon=false -Dkotlin.incremental=false"
+
+runs:
+    using: 'composite'
+    steps:
+        -   name: Configure JDK
+            uses: actions/setup-java@v4
+            with:
+                distribution: 'zulu'
+                java-version: 23
+
+        -   uses: gradle/actions/setup-gradle@v4
+            with:
+                cache-disabled: ${{ inputs.cache-disabled }}
+                cache-read-only: ${{ inputs.cache-read-only }}
+
+        -   name: Cache Gradle Wrapper
+            uses: actions/cache@v4
+            id: gradle-wrapper-cache
+            with:
+                path: ~/.gradle/wrapper
+                key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+                restore-keys: ${{ runner.os }}-gradle-wrapper-
+                enableCrossOsArchive: true
+
+        -   name: Cache Node Modules
+            uses: actions/cache@v4
+            id: gradle-yarn-cache
+            with:
+                path: build/js/node_modules
+                key: ${{ runner.os }}-yarn-${{ hashFiles('gradle/js/yarn.lock') }}
+                restore-keys: ${{ runner.os }}-yarn-
+                enableCrossOsArchive: true
+
+        -   name: Initialize Gradle wrapper
+            if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
+            run: chmod +x ./gradlew
+            shell: "bash"
+
+        -   name: Validate Gradle wrapper
+            uses: gradle/actions/wrapper-validation@v4
+
+        -   if: matrix.os == 'Windows'
+            uses: msys2/setup-msys2@v2
+            with:
+                release: false
+                install: mingw-w64-x86_64-openssl

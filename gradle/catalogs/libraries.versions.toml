@@ -1,22 +1,20 @@
 [versions]
 detekt = "1.23.7"
-gradle = "8.10.2"
-gradle-foojay = "0.8.0"
-jvm-toolchain = "17"
-kotlin = "2.0.20"
-kotlin-dokka = "1.9.20"
-kotlinx-bcv = "0.16.3"
-kotlinx-coroutines = "1.8.1"
+dokka = "2.0.0"
+gradle-foojay = "0.9.0"
+kotlin = "2.1.20-Beta1"
+kotlinx-bcv = "0.17.0"
+kotlinx-coroutines = "1.10.1"
 kotlinx-datetime = "0.6.1"
-kotlinx-io = "0.5.3"
-kotlinx-kover = "0.8.3"
-kotlinx-serialization = "1.6.3"
-dokka-gradle-plugin = "1.9.20"
-clikt = "4.4.0"
+kotlinx-io = "0.6.0"
+kotlinx-kover = "0.9.1"
+kotlinx-serialization = "1.8.0"
+clikt = "5.0.2"
 
 [libraries]
 clikt = { module = "com.github.ajalt.clikt:clikt", version.ref = "clikt" }
-dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka-gradle-plugin" }
+detekt-gradle-plugin = { module= "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 foojay-resolver = { module = "org.gradle.toolchains:foojay-resolver", version.ref = "gradle-foojay" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -25,18 +23,15 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 kotlinx-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinx-io" }
-kotlinx-serialization-bom = { module = "org.jetbrains.kotlinx:kotlinx-serialization-bom", version.ref = "kotlinx-serialization" }
-kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
 
 [bundles]
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
-dokka-gradle-plugin = { id = "org.jetbrains.dokka", version.ref = "dokka-gradle-plugin" }
-kotlin-dokka = { id = "org.jetbrains.dokka", version.ref = "kotlin-dokka" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+dokka-javadoc = { id = "org.jetbrains.dokka-javadoc", version.ref = "dokka" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlinx-bcv = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "kotlinx-bcv" }
 kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kotlinx-kover" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

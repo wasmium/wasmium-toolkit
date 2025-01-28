@@ -1,6 +1,6 @@
 # wasmium-toolkit
 
-![![kotlin](https://kotlinlang.org/)](https://img.shields.io/badge/kotlin--multiplatform-2.0.20-blue.svg?logo=kotlin) ![![License](https://github.com/wasmium/wasmium-toolkit/blob/main/LICENSE.md)](https://img.shields.io/github/license/wasmium/wasmium-toolkit)
+![![kotlin](https://kotlinlang.org/)](https://img.shields.io/badge/kotlin--multiplatform-2.1.20-blue.svg?logo=kotlin) ![![License](https://github.com/wasmium/wasmium-toolkit/blob/main/LICENSE.md)](https://img.shields.io/github/license/wasmium/wasmium-toolkit)
 
 Wasmium interface for WebAssembly development.
 
@@ -10,17 +10,36 @@ Wasmium interface for WebAssembly development.
 > Report any issue or bug <a href="https://github.com/wasmium/wasmium-toolkit/issues">in the GitHub repository.</a>
 >
 
-## Supported Platforms
 
-| Target Platform | Target preset              |
-|:---------------:|----------------------------|
-|   Kotlin/JVM    | <ul><li>`jvm`</li></ul>    |
-|  Kotlin/WasmJS  | <ul><li>`wasmJs`</li></ul> |
-|    Kotlin/JS    | <ul><li>`js`</li></ul>     |
+## Dependency
 
-## Contributions
+Add the dependency to your project:
 
-Please feel free to submit a pull request. Contributions are welcome!
+> [!WARNING]
+> wasmium-toolkit is not yet available in a repository.
+>
+
+### Gradle
+
+```kotlin
+dependencies {
+    implementation("org.wasmium:wasmium-toolkit:0.1.0")
+}
+```
+
+### Maven
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>org.wasmium</groupId>
+        <artifactId>wasmium-toolkit</artifactId>
+        <version>0.1.0</version>
+    </dependency>
+</dependencies>
+```
+
+Alternatively, you can [choose](publishing/bom/README.md) individual components of this library.
 
 ## Acknowledgements
 

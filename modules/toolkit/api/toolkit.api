@@ -1,0 +1,34 @@
+public final class org/wasmium/toolkit/ApplicationKt {
+	public static final fun main ([Ljava/lang/String;)V
+}
+
+public class org/wasmium/toolkit/CliException : java/lang/RuntimeException {
+	public fun <init> (Ljava/lang/String;I)V
+	public synthetic fun <init> (Ljava/lang/String;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getExitCode ()I
+	public fun getMessage ()Ljava/lang/String;
+}
+
+public final class org/wasmium/toolkit/CliSystemException : org/wasmium/toolkit/CliException {
+	public fun <init> (Ljava/lang/Throwable;I)V
+	public synthetic fun <init> (Ljava/lang/Throwable;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getCause ()Ljava/lang/Throwable;
+	public fun getExitCode ()I
+}
+
+public final class org/wasmium/toolkit/command/RootCommand : com/github/ajalt/clikt/core/NoOpCliktCommand {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+}
+
+public final class org/wasmium/toolkit/command/ValidateCommand : com/github/ajalt/clikt/core/CliktCommand {
+	public fun <init> ()V
+	public final fun getFile ()Ljava/lang/String;
+	public fun run ()V
+}
+
+public final class org/wasmium/toolkit/command/VerifyCommand : com/github/ajalt/clikt/core/CliktCommand {
+	public fun <init> ()V
+	public final fun getFile ()Ljava/io/File;
+	public fun run ()V
+}
+
